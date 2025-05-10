@@ -56,7 +56,7 @@ ngrok http 8000
 **Step B (Execute the fastapi application):**
 
 ```bash
-uvicorn app.main:app --port 8000 --reload
+uvicorn app:app --port 8000 --reload
 ```
 
 ### 5. Send yourself a test email
