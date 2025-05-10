@@ -53,10 +53,10 @@ ngrok http 8000
 2. Paste it into your Composio dashboard under your Gmail trigger’s “webhook URL.”
 3. Restart `python run_code.py`.
 
-**Step B :**
+**Step B (Execute the fastapi application):**
 
 ```bash
-python run_code.py
+uvicorn app.main:app --port 8000 --reload
 ```
 
 ### 5. Send yourself a test email
