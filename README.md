@@ -46,7 +46,6 @@ python mcp_client.py
 
 ```bash
 # Start your webhook & ngrok in separate terminals
-python runserver.py
 ngrok http 8000
 ```
 

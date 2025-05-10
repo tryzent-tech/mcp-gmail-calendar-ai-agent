@@ -1,5 +1,3 @@
-import os
+# RUN THe Following commangs to run the server
 
-os.system("python mcp_client.py")
-
-os.system("ngrok http 8000")
+#os.system("ngrok http 8000")
