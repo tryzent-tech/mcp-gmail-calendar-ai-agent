@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from composio_openai import ComposioToolSet, App
 import gmail_service as gmail
 import calender_service as calender
@@ -6,6 +8,20 @@ import calender_service as calender
 toolset = ComposioToolSet()                             # picks up COMPOSIO_API_KEY automatically :contentReference[oaicite:5]{index=5}
 
 app = FastAPI()
+
+@app.exception_handler(HTTPException)
+async def http_error_handler(request, exc):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"status": "error", "error": exc.status_code, "message": exc.detail},
+    )
+
+@app.exception_handler(RequestValidationError)
+async def validation_error_handler(request, exc):
+    return JSONResponse(
+        status_code=422,
+        content={"status": "error", "error": "ValidationError", "message": str(exc)},
+    )
 
 @app.post("/webhook")
 async def gmail_webhook(request: Request):
