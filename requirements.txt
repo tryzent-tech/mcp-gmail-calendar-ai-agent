@@ -2,3 +2,4 @@ fastapi
 composio_openai
 composio_langchain
 python-dotenv
+pytest-asyncio
